@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import backgroundImage from "../utils/Images/BG.jpg";
 import RegistrationPage from "./RegistrationPage";
 import LandingPage from "./LandingPage";
 
@@ -15,11 +14,6 @@ const Body = () => {
 
   return (
       <div className="">
-        <img
-          className="h-screen w-screen fixed"
-          src={backgroundImage}
-          alt="background"
-        />
         <div>
           {showRegistrationPage ? <RegistrationPage /> : <LandingPage />}
         </div>

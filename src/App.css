@@ -1,3 +1,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Gibson Bold";
+  src: url("./utils/Font/Gibson/Gibson-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Gibson Italic";
+  src: url("./utils/Font/Gibson/Gibson-Italic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Gibson Light";
+  src: url("./utils/Font/Gibson/Gibson-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Gibson Regular";
+  src: url("./utils/Font/Gibson/Gibson-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Gibson SemiBold";
+  src: url("./utils/Font/Gibson/Gibson-SemiBold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Gibson";
+  src: url("./utils/Font/Gibson/Gibson.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Gibson";
+  src: url("./utils/Font/DairyMilkFont-Medium.otf") format("truetype");
+}

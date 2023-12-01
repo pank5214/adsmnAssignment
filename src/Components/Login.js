@@ -4,25 +4,17 @@ import celebrationBg from "../utils/Images/Celebrations(Bg).png";
 import asset from "../utils/Images/Asset 1.png";
 import yellowTone from "../utils/Images/Yellow tone.png";
 import OtpPopup from "./Popup";
+import { useFullNameContext } from "../utils/userContext";
 
 const Login = () => {
-  const [showOTP, setShowOTP] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const { fullName, setFullName } = useFullNameContext();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setShowOTP(true);
+    setShowPopup(true);
   };
-
-  const handleOTPSubmit = (enteredOTP) => {
-    // Add logic to validate OTP
-    if (enteredOTP === "1234") {
-      setShowOTP(false);
-    } else {
-      // Show an error message or handle invalid OTP
-      // For simplicity, we'll just hide the OTP popup
-      setShowOTP(false);
-    }
-  };
+  console.log("fullName:", fullName);
 
   return (
     <>
@@ -35,6 +27,7 @@ const Login = () => {
         <form className="flex-col" onSubmit={handleSubmit}>
           <input
             type="text"
+            minLength="10"
             maxLength="10"
             placeholder="Phone Number"
             className="p-2 my-2 w-full pl-5 bg-white rounded-full"
@@ -46,6 +39,11 @@ const Login = () => {
             placeholder="Full Name"
             className="p-2 my-2 w-full pl-5 bg-white rounded-full"
             required
+            value={fullName}
+            onChange={(e) => {
+              setFullName(e.target.value);
+              // console.log("name:", e.target.value);
+            }}
           />
 
           <input
@@ -61,6 +59,7 @@ const Login = () => {
                 className="w-5 h-5 flex self-center"
                 type="radio"
                 required
+                name="termsAndConditions"
               />
               <div className="ml-4">
                 <label className="text-white p-4 text-sm font-medium">
@@ -74,11 +73,7 @@ const Login = () => {
             </div>
 
             <div className="flex items-center">
-              <input
-                className="w-5 h-5 flex self-center"
-                type="radio"
-                name="status"
-              />
+              <input className="w-5 h-5 flex self-center" type="radio" />
               <div className="ml-4">
                 <label className="text-white px-4 text-sm font-medium">
                   I would like to receive promotional
@@ -95,24 +90,21 @@ const Login = () => {
               <img
                 className="h-16 w-auto mt-8 ml-6"
                 src={yellowTone}
-                alt="asset"
+                alt="yellow-tone"
               />
             </div>
           </div>
-          <div className="flex justify-center">
+          <img className="overflow-hidden -mt-6" src={asset} alt="asset" />
+          <div className="flex justify-center -mt-20">
             <button
-              className=" bg-green-500 hover:bg-green-600 rounded-xl text-lg text-blue-800 font-bold p-2 px-8"
+              className="p-2 px-8 bg-green-500 hover:bg-green-600 rounded-xl text-lg text-blue-800 font-bold"
               type="submit"
             >
               Submit
             </button>
           </div>
         </form>
-      </div>
-      {showOTP && <OtpPopup onSubmitOTP={handleOTPSubmit} />}
-
-      <div className="relative">
-        <img className="ml-80 -mt-14 overflow-hidden" src={asset} alt="asset" />
+        {showPopup && <OtpPopup />}
       </div>
     </>
   );
