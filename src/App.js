@@ -1,22 +1,24 @@
+import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Body from "./Components/Body";
 import Details from "./Components/Details";
-import { Routes, Route } from "react-router-dom";
-import backgroundImage from "./utils/Images/BG.jpg";
-import SongDetails from "./Components/SongDetails";
 import FinalLyrics from "./Components/FinalLyrics";
+import SongDetails from "./Components/SongDetails";
+import backgroundImage from "./utils/Images/BG.jpg";
 import UserContext from "./utils/userContext";
-import { useEffect, useState } from "react";
 
 function App() {
+  const [userName, setUserName] = useState("");
 
-  const [userName, setUserName] = useState();
   useEffect(() => {
-    const data = {
-      name: "Pankaj Kumar",
-    };
-    setUserName(data.name);
+    const name = localStorage.getItem('userName');
+    if(name){
+      setUserName(name);
+    }
   }, []);
+  
+  useEffect(() => {localStorage.setItem('userName', userName)}, [userName])
 
   return (
     <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
@@ -36,7 +38,7 @@ function App() {
           />
         </Routes>
       </div>
-      </UserContext.Provider>
+    </UserContext.Provider>
   );
 }
 

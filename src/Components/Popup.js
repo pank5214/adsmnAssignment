@@ -30,7 +30,7 @@ const OtpPopup = () => {
               key={index}
               type="text"
               maxLength="1"
-              className="w-10 h-10 mx-1 text-2xl text-center border border-solid border-gray-300 rounded-lg bg-blue-900 focus:outline-none focus:border-blue-500"
+              className="w-10 h-10 mx-1 text-2xl text-center border border-solid border-gray-300 rounded-lg bg-blue-900 focus:outline-none focus:border-blue-500 text-white"
               required
               value={digit}
               onChange={(e) => {

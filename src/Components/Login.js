@@ -39,9 +39,7 @@ const Login = () => {
             className="p-2 my-2 w-full pl-5 bg-white rounded-full"
             required
             value={loggedInUser}
-            onChange={(e) => {
-              setUserName(e.target.value);
-            }}
+            onChange={(e) => setUserName(e.target.value)}
           />
 
           <input
