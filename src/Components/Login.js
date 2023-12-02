@@ -29,14 +29,14 @@ const Login = () => {
             minLength="10"
             maxLength="10"
             placeholder="Phone Number"
-            className="p-2 my-2 w-full pl-5 bg-white rounded-full"
+            className="p-2 my-2 md:w-full w-5/6 ml-10 md:ml-0 pl-5 bg-white rounded-full"
             required
           />
 
           <input
             type="text"
             placeholder="Full Name"
-            className="p-2 my-2 w-full pl-5 bg-white rounded-full"
+            className="p-2 my-2 md:w-full w-5/6 ml-10 md:ml-0 pl-5 bg-white rounded-full"
             required
             value={loggedInUser}
             onChange={(e) => setUserName(e.target.value)}
@@ -45,11 +45,11 @@ const Login = () => {
           <input
             type="email"
             placeholder="Email ID"
-            className="p-2 my-2 w-full pl-5 bg-White rounded-full"
+            className="p-2 my-2 md:w-full w-5/6 ml-10 md:ml-0 pl-5 bg-White rounded-full"
             required
           />
 
-          <div className="flex flex-col ml-8">
+          <div className="flex flex-col md:ml-8 ml-16">
             <div className="flex items-center">
               <input
                 className="w-5 h-5 flex self-center"

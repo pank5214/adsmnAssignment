@@ -85,27 +85,31 @@ const SongDetails = () => {
   return (
     <>
       <Header />
-      <div className="relative flex justify-center m-6">
+      <div className="relative flex justify-center m-6 md:ml-0 ml-24">
         <div className="flex flex-col">
-          <img className="m-2 w-5/6" src={progressBarTwo} alt="progress-bar2" />
-          <h1 className="text-white font-semibold text-2xl w-5/6 text-center mt-2">
+          <img
+            className="md:m-2 w-5/6"
+            src={progressBarTwo}
+            alt="progress-bar2"
+          />
+          <h1 className="text-white font-semibold text-2xl md:w-5/6 w-full md:ml-0 -ml-8 text-center mt-2">
             What would you like their song's vibe to be?
           </h1>
 
           <div className="flex flex-row justify-between ml-20">
             <img
-              className="h-20 w-20 mt-36 -ml-40"
+              className="md:h-20 h-8 md:w-20 md:mt-36 mt-48 -ml-40"
               src={purpleMusic}
               alt="purpleMusic"
             />
             <img className="-mt-6" src={headPhone} alt="headPhone" />
-            <img className="h-24 w-auto mt-16" src={balloon} alt="balloon" />
+            <img className="md:h-24 h-16 md:ml-0 -ml-4 md:mr-0 mr-6 w-auto mt-16" src={balloon} alt="balloon" />
           </div>
         </div>
       </div>
 
       <div className="flex justify-center flex-row -mt-[72px]">
-        <div className="relative border-2 h-[153px] w-2/6 border-green-600 rounded-2xl">
+        <div className="relative border-2 h-[153px] md:w-2/6 w-5/6 border-green-600 rounded-2xl">
           <div className="p-2 bg-green-600 rounded-t-xl">
             <h2 className="text-center text-violet-900 text-xl font-bodyFont font-extrabold">
               Mood
@@ -129,7 +133,7 @@ const SongDetails = () => {
       </div>
 
       <div className="flex justify-center flex-row mt-8">
-        <div className="relative border-2 h-[153px] w-2/6 border-green-600 rounded-2xl">
+        <div className="relative border-2 h-[153px] md:w-2/6 w-5/6 border-green-600 rounded-2xl">
           <div className="p-2 bg-green-600 rounded-t-xl">
             <h2 className="text-center text-violet-900 text-xl font-bodyFont font-extrabold">
               Genre
@@ -153,7 +157,7 @@ const SongDetails = () => {
       </div>
 
       <div className="flex justify-center flex-row mt-8">
-        <div className="relative border-2 h-[153px] w-2/6 border-green-600 rounded-2xl">
+        <div className="relative border-2 h-[153px] md:w-2/6 w-5/6 border-green-600 rounded-2xl">
           <div className="p-2 bg-green-600 rounded-t-xl">
             <h2 className="text-center text-violet-900 text-xl font-bodyFont font-extrabold">
               Singer's voice
@@ -177,13 +181,13 @@ const SongDetails = () => {
         </div>
       </div>
       <div className="relative flex flex-row-reverse">
-        <img className="bottom-7 fixed" src={asset} alt="asset" />
+        <img className="h-12 w-10 bottom-7 fixed" src={asset} alt="asset" />
       </div>
       <div className="relative flex w-4/5 justify-center shadow-lg">
         {
           <Link to={"/details1/song-details/lyrics"}>
             <button
-              className="p-2 px-8 ml-[76px] bottom-7 fixed bg-green-500 hover:bg-green-600 rounded-xl text-lg text-blue-800 font-bold"
+              className="p-2 px-8 md:ml-[76px] -ml-6 bottom-7 fixed bg-green-500 hover:bg-green-600 rounded-xl text-lg text-blue-800 font-bold"
               onClick={handleProceed}
             >
               Proceed
