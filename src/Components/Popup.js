@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-import { useFullNameContext } from "../utils/userContext";
 
 const OtpPopup = () => {
-  const { fullName } = useFullNameContext();
-  console.log("otp:", fullName);
   const [otp, setOtp] = useState(["", "", "", ""]);
 
   const handleChange = (index, value) => {

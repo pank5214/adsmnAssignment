@@ -4,7 +4,7 @@ import LandingPage from "./LandingPage";
 
 const Body = () => {
   const [showRegistrationPage, setShowRegistrationPage] = useState(false);
-
+// Initially LandinPage rendered after 2 sec RegistrationPage rendered
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowRegistrationPage(true);

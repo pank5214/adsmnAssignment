@@ -1,20 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import progressBar from "../utils/Images/progress bar.png";
 import celebrationBg from "../utils/Images/Celebrations(Bg).png";
 import asset from "../utils/Images/Asset 1.png";
 import yellowTone from "../utils/Images/Yellow tone.png";
 import OtpPopup from "./Popup";
-import { useFullNameContext } from "../utils/userContext";
+import UserContext from "../utils/userContext";
 
 const Login = () => {
   const [showPopup, setShowPopup] = useState(false);
-  const { fullName, setFullName } = useFullNameContext();
+  const { loggedInUser, setUserName } = useContext(UserContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setShowPopup(true);
   };
-  console.log("fullName:", fullName);
 
   return (
     <>
@@ -39,10 +38,9 @@ const Login = () => {
             placeholder="Full Name"
             className="p-2 my-2 w-full pl-5 bg-white rounded-full"
             required
-            value={fullName}
+            value={loggedInUser}
             onChange={(e) => {
-              setFullName(e.target.value);
-              // console.log("name:", e.target.value);
+              setUserName(e.target.value);
             }}
           />
 

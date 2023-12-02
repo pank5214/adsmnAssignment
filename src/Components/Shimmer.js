@@ -1,15 +1,9 @@
+// Shimmer.jsx
 import React from "react";
 import Header from "./Header";
 import progressBarFour from "../utils/Images/progress bar4.png";
-import { useLocation } from "react-router-dom";
-import Shimmer from "./Shimmer";
 
-const FinalLyrics = () => {
-  const location = useLocation();
-  const { lyrics } = location.state || {};
-
-  if (!lyrics) return <Shimmer />;
-
+const Shimmer = () => {
   return (
     <>
       <Header />
@@ -26,14 +20,10 @@ const FinalLyrics = () => {
         </div>
       </div>
       <div className="relative flex justify-center">
-        <div className="bg-white border-2 h-[60vh] md:w-2/6 w-4/6 md:mr-12 rounded-3xl overflow-y-auto">
-          <div className="m-4 p-2 text-left self-center">
-            <span className="shimmer-text">{lyrics}</span>
-          </div>
-        </div>
+        <div className="bg-gray-500 border-2 h-[60vh] md:w-2/6 w-4/6 md:mr-12 rounded-3xl overflow-y-auto relative"></div>
       </div>
     </>
   );
 };
 
-export default FinalLyrics;
+export default Shimmer;

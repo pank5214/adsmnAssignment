@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Header from "./Header";
 import progressBarTwo from "../utils/Images/progress bar2.png";
 import headPhone from "../utils/Images/Headphone.png";
@@ -18,14 +18,19 @@ import edmMusic from "../utils/Images/EDM.png";
 import maleAnimation from "../utils/Images/MAle.png";
 import femaleAnimation from "../utils/Images/Female.png";
 import asset from "../utils/Images/Asset 1.png";
-import { Link } from "react-router-dom";
-import { useFullNameContext } from "../utils/userContext";
-// import openai from "../utils/openAI";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import UserContext from "../utils/userContext";
+import openai from "../utils/openAI";
 
 const SongDetails = () => {
-  const { fullName } = useFullNameContext();
-  console.log("songdetails:", fullName);
-  
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const selectedGender = searchParams.get("gender");
+
+  const { loggedInUser } = useContext(UserContext);
+
+  const navigate = useNavigate();
+
   const moods = [
     { emoji: happyEmoji, label: "Happy" },
     { emoji: romanticEmoji, label: "Romantic" },
@@ -46,41 +51,37 @@ const SongDetails = () => {
     { animation: maleAnimation, gender: "Male" },
     { animation: femaleAnimation, gender: "Female" },
   ];
-  // const generateBirthdayLyrics = async (selectedMood, selectedGenre, selectedVoice) => {
-  //   const prompt = `Wishing a happy birthday to ${name}.
-  //     Ensure that "Happy birthday" is mentioned at least twice,
-  //     and it should rhyme. The lyrics should use simple, short,
-  //     and easy to pronounce words as much as possible.
 
-  //     Using the above information, please write 16 lines of ${selectedGenre} lyrics
-  //     that I can dedicate to him/her for his/her birthday.
-  //     Each line can have a maximum of 8 words or 40 characters.
+  // OpenAI created Happy Birthday tune, by follow the condition which are provided in prompt Variable
+  const handleProceed = async () => {
+    const prompt = `Wishing a happy birthday to ${loggedInUser}.
+      Ensure that "Happy birthday" is mentioned at least twice,
+      and it should rhyme. The lyrics should use simple, short,
+      and easy to pronounce words as much as possible.
 
-  //     The lyrics generated should be completely unique and never written before
-  //     every single time and should not infringe on any trademarks/copyrights or
-  //     any other rights of any individual or entity anywhere in the world.`;
+      Using the above information, please write 16 lines of
+      <genre> lyrics that I can dedicate to ${
+        selectedGender === "Male" ? "him" : "her"
+      } 
+      for ${selectedGender === "Male" ? "his" : "her"} birthday. 
+      Each line can have maximum of 8 words or 40 characters.
 
-  //   try {
-  //     const response = await openai.complete({
-  //       engine: 'text-davinci-003',  // You can choose a different engine if needed
-  //       prompt,
-  //       max_tokens: 400,  // Adjust as needed
-  //     });
+      The lyrics generated should be completely unique and never written before every single time and should not in any way or manner infringe on any trademarks/copyrights or any other rights of any individual or entity anywhere in the world. Any references or similarity to existing lyrics of any song anywhere in the world needs to be completely avoided. Any mention of proper nouns i.e. names or places of any manner apart from the ones mentioned above needs to be completely avoided. The lyrics generated should not be insensitive or should not offend any person/ place/ caste/ religion/ creed/ tribe/ country/ gender/ government/ organisation or any entity or individual in any manner whatsoever. Any words which might be construed directly or indirectly as cuss words or are offensive in any language should also be completely avoided.`;
 
-  //     const lyrics = response.data.choices[0].text;
-  //     console.log(lyrics);
+    try {
+      const completion = await openai.chat.completions.create({
+        messages: [{ role: "user", content: prompt }],
+        model: "gpt-3.5-turbo",
+      });
 
-  //     // Optionally, you can redirect to the lyrics page or display them in your component
-  //     // window.location.href = "/details1/song-details/lyrics";
-  //   } catch (error) {
-  //     console.error('Error generating lyrics:', error);
-  //   }
-  // };
-  const handleProceed = () => {
-    // generateBirthdayLyrics(selectedMood, selectedGenre, selectedVoice);
-    console.log("Hello");
+      const generatedLyrics = completion?.choices?.[0]?.message?.content;
+      navigate("/details1/song-details/lyrics", {
+        state: { lyrics: generatedLyrics },
+      });
+    } catch (error) {
+      console.error("Error generating lyrics:", error);
+    }
   };
-
   return (
     <>
       <Header />
@@ -180,8 +181,11 @@ const SongDetails = () => {
       </div>
       <div className="relative flex w-4/5 justify-center shadow-lg">
         {
-          <Link to={"/details1/song-details/lyrics"} onClick={handleProceed}>
-            <button className="p-2 px-8 ml-[76px] bottom-7 fixed bg-green-500 hover:bg-green-600 rounded-xl text-lg text-blue-800 font-bold">
+          <Link to={"/details1/song-details/lyrics"}>
+            <button
+              className="p-2 px-8 ml-[76px] bottom-7 fixed bg-green-500 hover:bg-green-600 rounded-xl text-lg text-blue-800 font-bold"
+              onClick={handleProceed}
+            >
               Proceed
             </button>
           </Link>

@@ -5,11 +5,21 @@ import { Routes, Route } from "react-router-dom";
 import backgroundImage from "./utils/Images/BG.jpg";
 import SongDetails from "./Components/SongDetails";
 import FinalLyrics from "./Components/FinalLyrics";
-import { FullNameProvider } from "./utils/userContext";
+import UserContext from "./utils/userContext";
+import { useEffect, useState } from "react";
 
 function App() {
+
+  const [userName, setUserName] = useState();
+  useEffect(() => {
+    const data = {
+      name: "Pankaj Kumar",
+    };
+    setUserName(data.name);
+  }, []);
+
   return (
-    <FullNameProvider>
+    <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
       <div>
         <img
           className="h-screen w-screen fixed"
@@ -26,7 +36,7 @@ function App() {
           />
         </Routes>
       </div>
-    </FullNameProvider>
+      </UserContext.Provider>
   );
 }
 

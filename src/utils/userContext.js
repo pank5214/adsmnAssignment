@@ -1,15 +1,7 @@
-import React, { createContext, useContext, useState } from "react";
+import { createContext } from "react";
 
-const FullNameContext = createContext();
+const UserContext = createContext({
+  loggedInUser: "Default User",
+});
 
-export const useFullNameContext = () => useContext(FullNameContext);
-
-export const FullNameProvider = ({ children }) => {
-  const [fullName, setFullName] = useState("");
-
-  return (
-    <FullNameContext.Provider value={{ fullName, setFullName }}>
-      {children}
-    </FullNameContext.Provider>
-  );
-};
+export default UserContext;

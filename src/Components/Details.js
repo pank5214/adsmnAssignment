@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import Header from "./Header";
 import progressBarOne from "../utils/Images/progress bar1.png";
 import capGift from "../utils/Images/Cap&Gift.png";
@@ -6,12 +6,19 @@ import asset from "../utils/Images/Asset 1.png";
 import balloon from "../utils/Images/Balloon.png";
 import purpleTone from "../utils/Images/Purple tone.png";
 import { Link } from "react-router-dom";
-import { useFullNameContext } from "../utils/userContext";
+import UserContext from "../utils/userContext";
 
 const Details = () => {
-  const { fullName } = useFullNameContext();
-  alert("allllll", fullName);
-  console.log("fulll:", fullName);
+  const { loggedInUser } = useContext(UserContext);
+  const [selectedGender, setSelectedGender] = useState("");
+
+  const handleSubmitEvent = (e) => {
+    e.preventDefault();
+  };
+
+  const handleGenderChange = (e) => {
+    setSelectedGender(e.target.value);
+  };
 
   return (
     <>
@@ -28,7 +35,7 @@ const Details = () => {
             <img className="" src={capGift} alt="cap-gift" />
             <img className="h-24 w-auto mt-20" src={balloon} alt="balloon" />
           </div>
-          <form action="">
+          <form id="userDetails" onSubmit={handleSubmitEvent}>
             <div className="-mt-12">
               <h1 className="text-white text-center font-bold text-xl w-5/6">
                 Their name
@@ -36,8 +43,9 @@ const Details = () => {
               <input
                 className="w-full -ml-4 m-2 rounded-full p-3 pr-8 font-bold text-white text-center text-xl"
                 type="text"
-                value={fullName}
+                value={loggedInUser}
                 disabled
+                required
               />
             </div>
 
@@ -81,7 +89,11 @@ const Details = () => {
                 Gender
               </h1>
               <div className="relative">
-                <select className="w-full -ml-4 m-2 pl-6 text-blue-600 font-extrabold text-lg rounded-full p-3 appearance-none">
+                <select
+                  className="w-full -ml-4 m-2 pl-6 text-blue-600 font-extrabold text-lg rounded-full p-3 appearance-none"
+                  required
+                  onChange={handleGenderChange}
+                >
                   <option value="" disabled selected hidden>
                     Select Gender
                   </option>
@@ -109,10 +121,18 @@ const Details = () => {
 
               <div className="flex self-center justify-center">
                 {
-                  <Link to={"/details1/song-details"}>
+                  <Link
+                    to={{
+                      pathname: "/details1/song-details",
+                      search: `?gender=${selectedGender}`,
+                    }}
+                  >
                     <button
-                      className="p-2 px-8 ml-14 bg-green-500 hover:bg-green-600 rounded-xl text-lg text-blue-800 font-bold"
+                      className={`p-2 px-8 ml-14 bg-green-500 hover:bg-green-600 rounded-xl text-lg text-blue-800 font-bold ${
+                        selectedGender ? "" : "opacity-50 cursor-not-allowed"
+                      }`}
                       type="submit"
+                      disabled={!selectedGender}
                     >
                       Proceed
                     </button>
