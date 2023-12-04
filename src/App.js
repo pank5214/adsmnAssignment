@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Body from "./Components/Body";
-import Details from "./Components/Details";
 import FinalLyrics from "./Components/FinalLyrics";
-import SongDetails from "./Components/SongDetails";
 import backgroundImage from "./utils/Images/BG.jpg";
 import UserContext from "./utils/userContext";
+import DetailsPage from "./Components/DetailsPage";
+import SongDetailsPage from "./Components/SongDetailsPage";
 
 function App() {
   const [userName, setUserName] = useState("");
@@ -30,8 +30,8 @@ function App() {
         />
         <Routes>
           <Route path="/" element={<Body />} />
-          <Route path="/details1/" element={<Details />} />
-          <Route path="/details1/song-details" element={<SongDetails />} />
+          <Route path="/details1/" element={<DetailsPage />} />
+          <Route path="/details1/song-details" element={<SongDetailsPage />} />
           <Route
             path="/details1/song-details/lyrics"
             element={<FinalLyrics />}
