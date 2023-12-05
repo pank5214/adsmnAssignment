@@ -22,8 +22,10 @@ const SongDetailsSelection = ({
           <div className="flex flex-row md:h-16 h-12 md:m-2 m-4 justify-around">
             {moods.map((mood, index) => (
               <img
-                className={`cursor-pointer hover:bg-yellow-500 hover:rounded-2xl hover:h-20 ${
-                  selectedMood === index ? "selected" : ""
+                className={`${
+                  selectedMood === index
+                    ? `cursor-pointer bg-yellow-500 rounded-full h-14`
+                    : `cursor-pointer hover:bg-yellow-500 hover:rounded-2xl hover:h-20`
                 }`}
                 key={index}
                 src={mood.emoji}
@@ -57,9 +59,11 @@ const SongDetailsSelection = ({
           <div className="flex flex-row md:h-16 h-12 md:m-2 m-4 justify-around">
             {music.map((instruemnts, index) => (
               <img
-                className={`cursor-pointer hover:bg-yellow-500 hover:rounded-2xl hover:h-20 ${
-                  selectedGenre === index ? "selected" : ""
-                }`}
+              className={`${
+                selectedGenre === index
+                  ? `cursor-pointer bg-yellow-500 rounded-full h-14`
+                  : `cursor-pointer hover:bg-yellow-500 hover:rounded-2xl hover:h-20`
+              }`}
                 key={index}
                 src={instruemnts.instrumentName}
                 alt="emoji"
@@ -92,9 +96,11 @@ const SongDetailsSelection = ({
           <div className="flex flex-row h-16 md:m-2 m-4 justify-evenly">
             {singerVoice.map((singersVoice, index) => (
               <img
-                className={`cursor-pointer hover:bg-yellow-500 hover:rounded-2xl hover:h-20 ${
-                  selectedVoice === index ? "selected" : ""
-                }`}
+              className={`${
+                selectedVoice === index
+                  ? `cursor-pointer bg-yellow-500 rounded-2xl h-20`
+                  : `cursor-pointer hover:bg-yellow-500 hover:rounded-2xl hover:h-20`
+              }`}
                 key={index}
                 src={singersVoice.animation}
                 alt="emoji"
@@ -103,7 +109,7 @@ const SongDetailsSelection = ({
             ))}
           </div>
 
-          <div className="flex flex-row h-16 m-[10px] p-2 -mt-4 justify-evenly">
+          <div className="flex flex-row h-16 m-[10px] p-2 -mt-2 justify-evenly">
             <span className="mt-1 text-white text-center text-xs md:text-base md:font-medium font-bold md:ml-[19px] md:mr-0 ml-3">
               {singerVoice[0].gender}
             </span>

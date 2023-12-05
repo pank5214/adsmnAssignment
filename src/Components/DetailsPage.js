@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Header from "./Header";
 import progressBarOne from "../utils/Images/progress bar1.png";
 import capGift from "../utils/Images/Cap&Gift.png";
@@ -14,21 +14,14 @@ const DetailsPage = () => {
   const [age, setAge] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
 
-  const validateForm = () => {
-    setIsFormValid(loggedInUser !== "" && age !== "" && selectedGender !== "");
-  };
-
-  const handleAgeChange = (e) => {
-    const inputAge = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
-    setAge(inputAge);
-    validateForm();
-  };
+  useEffect(() => {
+    setIsFormValid(!!(loggedInUser && age && selectedGender));
+  }, [loggedInUser, age, selectedGender]);
 
   const incrementAge = () => {
     setAge((prevAge) =>
       prevAge === "" ? "1" : String(parseInt(prevAge, 10) + 1)
     );
-    console.log("clicked", age);
   };
 
   const decrementAge = () => {
@@ -41,9 +34,13 @@ const DetailsPage = () => {
     e.preventDefault();
   };
 
+  const handleAgeChange = (e) => {
+    const inputAge = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
+    setAge(inputAge);
+  };
+
   const handleGenderChange = (e) => {
     setSelectedGender(e.target.value);
-    validateForm();
   };
 
   return (
