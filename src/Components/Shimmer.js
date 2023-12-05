@@ -33,8 +33,8 @@ const Shimmer = ({ title, message }) => {
         </div>
       </div>
       <div className="relative flex justify-center">
-        <div className="flex justify-center items-center bg-gray-400 h-[60vh] md:w-2/6 w-5/6 md:mr-2 rounded-3xl overflow-y-auto">
-          <h1 className="text-center text-blue-800 font-extrabold md:text-2xl text-xl md:mx-2 mx-4 mb-10">
+        <div className="flex justify-center items-center bg-yellow-100 h-[60vh] md:w-2/6 w-5/6 md:mr-2 rounded-3xl overflow-y-auto">
+          <h1 className="text-center text-blue-700 font-extrabold md:text-2xl text-xl md:mx-2 mx-4 mb-10">
             {loading ? "Loading..." : message}
           </h1>
         </div>
