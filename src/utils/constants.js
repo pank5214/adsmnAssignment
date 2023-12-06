@@ -10,7 +10,6 @@ import desiMusic from "./Images/Icons/Desi.png";
 import edmMusic from "./Images/Icons/EDM.png";
 import maleAnimation from "./Images/Icons/Male.png";
 import femaleAnimation from "./Images/Icons/Female.png";
-export const OPENAI_KEY = process.env.REACT_APP_OPENAI_KEY;
 
 export const moods = [
   { emoji: happyEmoji, label: "Happy" },
@@ -32,3 +31,5 @@ export const singerVoice = [
   { animation: maleAnimation, gender: "Male" },
   { animation: femaleAnimation, gender: "Female" },
 ];
+
+export const OPENAI_KEY = process.env.REACT_APP_OPENAI_KEY;
