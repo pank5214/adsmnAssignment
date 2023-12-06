@@ -1,15 +1,15 @@
-import happyEmoji from "./Images/Happy.png";
-import romanticEmoji from "./Images/Romantic.png";
-import funnyEmoji from "./Images/Funny.png";
-import motivationalEmoji from "./Images/Motivational.png";
-import calmEmoji from "./Images/Calm.png";
-import rapMusic from "./Images/Rap.png";
-import rockMusic from "./Images/Rock.png";
-import popMusic from "./Images/Pop.png";
-import desiMusic from "./Images/Desi.png";
-import edmMusic from "./Images/EDM.png";
-import maleAnimation from "./Images/MAle.png";
-import femaleAnimation from "./Images/Female.png";
+import happyEmoji from "./Images/Icons/Happy.png";
+import romanticEmoji from "./Images/Icons/Romantic.png";
+import funnyEmoji from "./Images/Icons/Funny.png";
+import motivationalEmoji from "./Images/Icons/Motivational.png";
+import calmEmoji from "./Images/Icons/Calm.png";
+import rapMusic from "./Images/Icons/Rap.png";
+import rockMusic from "./Images/Icons/Rock.png";
+import popMusic from "./Images/Icons/Pop.png";
+import desiMusic from "./Images/Icons/Desi.png";
+import edmMusic from "./Images/Icons/EDM.png";
+import maleAnimation from "./Images/Icons/Male.png";
+import femaleAnimation from "./Images/Icons/Female.png";
 export const OPENAI_KEY = process.env.REACT_APP_OPENAI_KEY;
 
 export const moods = [
